@@ -26,14 +26,23 @@ jobs:
         registry: ghcr.io
         username: ${{ secrets.GH_USER }}
         password: ${{ secrets.GH_TOKEN }} 
+    
+    - name: Build and push
+      uses: docker/build-push-action@v6
+      with:
+        context: .
+        push: true
+        tags: |
+          ghcr.io/maria-eduarda90/jorney.api:${{ steps.generate_sha.outputs.sha }}
+          ghcr.io/maria-eduarda90/jorney.api:latest
 
-    - name: Build docker image
-      run: docker build -t ghcr.io/maria-eduarda90/jorney.api:${{ steps.generate_sha.outputs.sha }} .
+    # - name: Build docker image
+    #   run: docker build -t ghcr.io/maria-eduarda90/jorney.api:${{ steps.generate_sha.outputs.sha }} .
 
-    - name: Tag docker image as latest
-      run: docker tag ghcr.io/maria-eduarda90/jorney.api:${{ steps.generate_sha.outputs.sha }} ghcr.io/maria-eduarda90/jorney.api:latest
+    # - name: Tag docker image as latest
+    #   run: docker tag ghcr.io/maria-eduarda90/jorney.api:${{ steps.generate_sha.outputs.sha }} ghcr.io/maria-eduarda90/jorney.api:latest
 
-    - name: Push image
-      run: |
-        docker push ghcr.io/maria-eduarda90/jorney.api:${{ steps.generate_sha.outputs.sha }}
-        docker push ghcr.io/maria-eduarda90/jorney.api:latest
+    # - name: Push image
+    #   run: |
+    #     docker push ghcr.io/maria-eduarda90/jorney.api:${{ steps.generate_sha.outputs.sha }}
+    #     docker push ghcr.io/maria-eduarda90/jorney.api:latest
