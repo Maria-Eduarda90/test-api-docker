@@ -28,10 +28,10 @@ jobs:
         password: ${{ secrets.GH_TOKEN }} 
 
     - name: Build docker image
-      run: docker build -t Maria-Eduarda90/${{ secrets.GH_USER }}/jorney.api:${{ steps.generate_sha.outputs.sha }} .
+      run: docker build -t Maria-Eduarda90/jorney.api:${{ steps.generate_sha.outputs.sha }} .
 
     - name: Push image
       run: |
         docker push Maria-Eduarda90/jorney.api:${{ steps.generate_sha.outputs.sha }}
-        docker tag Maria-Eduarda90/${{ secrets.GH_USER }}/jorney.api:${{ steps.generate_sha.outputs.sha }} Maria-Eduarda90/${{ secrets.GH_USER }}/jorney.api:latest
-        docker push Maria-Eduarda90/${{ secrets.GH_USER }}/jorney.api:latest
+        docker tag Maria-Eduarda90/jorney.api:${{ steps.generate_sha.outputs.sha }} Maria-Eduarda90/jorney.api:latest
+        docker push Maria-Eduarda90/jorney.api:latest
