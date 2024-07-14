@@ -30,8 +30,4 @@ jobs:
     - name: Build docker image
       run: docker build -t jorney.api:${{ steps.generate_sha.outputs.sha }} .
 
-    - name: Push image
-      run: |
-        docker push jorney.api:${{ steps.generate_sha.outputs.sha }}
-        docker tag jorney.api:${{ steps.generate_sha.outputs.sha }} jorney.api:latest
-        docker push jorney.api:latest
+    
