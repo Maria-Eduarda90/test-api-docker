@@ -28,7 +28,7 @@ jobs:
         password: ${{ secrets.GH_TOKEN }} 
 
     - name: Build docker image
-      run: docker build -t ghcr.io/Maria-Eduarda90/jorney.api:${{ steps.generate_sha.outputs.sha }} .
+      run: docker build -t Maria-Eduarda90/jorney.api:${{ steps.generate_sha.outputs.sha }} .
 
     - name: Push image
       run: |
