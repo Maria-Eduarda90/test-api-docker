@@ -28,10 +28,10 @@ jobs:
         password: ${{ secrets.GH_TOKEN }} 
 
     - name: Build docker image
-      run: docker build -t jorney.api:${{ steps.generate_sha.outputs.sha }} .
+      run: docker build -t ghcr.io/${{ secrets.GH_USER }}/jorney.api:${{ steps.generate_sha.outputs.sha }} .
 
     - name: Push image
       run: |
-        docker push jorney.api:${{ steps.generate_sha.outputs.sha }}
-        docker tag jorney.api:${{ steps.generate_sha.outputs.sha }} jorney.api:latest
-        docker push jorney.api:latest
+        docker push ghcr.io/${{ secrets.GH_USER }}/jorney.api:${{ steps.generate_sha.outputs.sha }}
+        docker tag ghcr.io/${{ secrets.GH_USER }}/jorney.api:${{ steps.generate_sha.outputs.sha }} ghcr.io/${{ secrets.GH_USER }}/jorney.api:latest
+        docker push ghcr.io/${{ secrets.GH_USER }}/jorney.api:latest
